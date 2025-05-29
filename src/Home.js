@@ -8,7 +8,7 @@ const Home =() => {
     { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mahii', id: 3 }
   ])
 
-  const [name, setName] = useState( 'mario');
+  const [name, setName] = useState( 'mahiiii');
 
   const handleDelete = (id) => {
     const newBlogs = blogs.filter(blog => blog.id !== id);
