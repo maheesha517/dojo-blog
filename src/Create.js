@@ -1,18 +1,33 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
-
-    const [title, setTitle] = useState('');
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [author, setAuthor] = useState('mario');
+  const history = useHistory();
 
- return (
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const blog = { title, body, author };
+
+    fetch('http://localhost:8005/blogs/', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(blog)
+    }).then(() => {
+      // history.go(-1);
+      history.push('/');
+    })
+  }
+
+  return (
     <div className="create">
       <h2>Add a New Blog</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Blog title:</label>
         <input 
-          type="text"  
+          type="text" 
           required 
           value={title}
           onChange={(e) => setTitle(e.target.value)}
