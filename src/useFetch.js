@@ -11,11 +11,11 @@ const useFetch = (url) => {
     setTimeout(() => {
       fetch(url, { signal: abortCont.signal })
       .then(res => {
-        if (!res.ok) { // error coming back from server
-          throw Error('could not fetch the data for that resource');
-        } 
-        return res.json();
-      })
+  if (!res.ok) {
+    throw Error(`Error ${res.status}: could not fetch the data for that resource`);
+  }
+  return res.json();
+})
       .then(data => {
         setIsPending(false);
         setData(data);

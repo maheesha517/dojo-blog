@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
-import useFetch from "./useFetch";
+import useFetch from './useFetch';
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const { data: blog, error, isPending } = useFetch('http://localhost:8000/blogs/' + id);
+  const { data:blog, error, isPending}=useFetch('http://localhost:8005/blogs/' + id);
 
   return (
     <div className="blog-details">
-      { isPending && <div>Loading...</div> }
+     { isPending && <div>Loading...</div> }
       { error && <div>{ error }</div> }
       { blog && (
         <article>
